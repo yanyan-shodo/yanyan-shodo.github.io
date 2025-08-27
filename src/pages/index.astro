@@ -1,0 +1,98 @@
+---
+import Base from "../layouts/Base.astro";
+const SITE = {
+  instagram: "https://www.instagram.com/interior_syodo.yan",
+  tiktok: "https://www.tiktok.com/@interior_syodo.yan",
+  youtube: "https://www.youtube.com/@interior_syodoyan",
+  x: "https://x.com/YANYAN_shodo",
+};
+---
+<Base title="インテリア書道 YANYAN | 書を、暮らしに。">
+  <section class="text-center px-5 py-16 bg-cover bg-center" style="background-image:url('/images/washi-texture.png')">
+    <h1 class="font-serif text-3xl md:text-5xl font-bold mb-2">インテリアに映える、新しい書道のかたち</h1>
+    <p class="max-w-3xl mx-auto text-stone-700 mb-5">
+      伝統の筆致と現代の感性を融合し、日常空間を彩る「インテリアとしての書」を提案します。オーダーメイド作品、パフォーマンス、レッスンを通じて“書”をもっと身近に。
+    </p>
+    <div class="flex justify-center gap-3 flex-wrap">
+      <a href="#lessons" class="btn-primary">体験レッスン予約</a>
+      <a href="#gallery" class="btn-ghost">作品を見る</a>
+    </div>
+  </section>
+
+  <section id="about" class="px-5 py-16 border-t border-stone-200">
+    <h2 class="h2">理念とご挨拶</h2>
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-6 items-center">
+      <div class="rounded-2xl shadow bg-white aspect-[4/3]"></div>
+      <div class="space-y-3">
+        <p>「書をインテリアに」。空間の色・素材・光に調和する書の在り方を追求し、住まいや店舗、オフィスにふさわしい一枚をお作りします。</p>
+        <p>SNSでも制作過程や作品を発信中。お気軽にフォロー・お問い合わせください。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="px-5 py-16 border-t border-stone-200">
+    <h2 class="h2">作品</h2>
+    <div id="galleryGrid" class="max-w-[1100px] mx-auto grid gap-5 sm:grid-cols-2 md:grid-cols-3">
+      <figure class="card">
+        <img src="https://images.unsplash.com/photo-1526318472351-c75fcf070305?q=80" alt="モダン書『静』" />
+        <figcaption class="meta">モダン書「静」 / 半紙</figcaption>
+      </figure>
+      <figure class="card">
+        <img src="https://images.unsplash.com/photo-1564471375301-5659e9453c2a?q=80" alt="アート書『風』" />
+        <figcaption class="meta">アート書「風」 / 半切</figcaption>
+      </figure>
+      <figure class="card">
+        <img src="https://images.unsplash.com/photo-1517777596322-7f634e6bb8ca?q=80" alt="インテリア書『宙』" />
+        <figcaption class="meta">インテリア書「宙」 / パネル</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="lessons" class="px-5 py-16 border-t border-stone-200">
+    <h2 class="h2">教室・ワークショップ</h2>
+    <div class="max-w-[1100px] mx-auto grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+      <div class="plan">
+        <h3>体験レッスン（60分）</h3>
+        <p>筆づかい・基本の線。初心者歓迎・道具レンタル可。</p>
+      </div>
+      <div class="plan">
+        <h3>アート書ワークショップ（90分）</h3>
+        <p>インテリアに飾れる一枚を制作。SNS映えも。</p>
+      </div>
+      <div class="plan">
+        <h3>パフォーマンス依頼</h3>
+        <p>イベント・店舗などでのライブ書道。日時・規模をご相談ください。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="px-5 py-16 border-t border-stone-200">
+    <h2 class="h2">お問い合わせ</h2>
+    <form class="max-w-xl mx-auto grid gap-3" onsubmit="event.preventDefault(); alert('送信ありがとうございます！SNSのDMからも受け付けています。'); this.reset();">
+      <input type="text" name="name" placeholder="お名前" required class="input" />
+      <input type="email" name="email" placeholder="メールアドレス" required class="input" />
+      <textarea name="message" placeholder="ご依頼内容・お問い合わせ" class="input min-h-[120px]"></textarea>
+      <button class="btn-primary" type="submit">送信する</button>
+    </form>
+    <div class="mt-4 flex justify-center gap-4 flex-wrap font-semibold">
+      <a href={SITE.instagram} target="_blank" rel="noopener">Instagram</a>
+      <a href={SITE.tiktok} target="_blank" rel="noopener">TikTok</a>
+      <a href={SITE.youtube} target="_blank" rel="noopener">YouTube</a>
+      <a href={SITE.x} target="_blank" rel="noopener">X (旧Twitter)</a>
+    </div>
+  </section>
+
+  <script is:inline>
+    document.getElementById('galleryGrid')?.addEventListener('click', e => {
+      const img = e.target.closest('img');
+      if(!img) return;
+      const dlg = document.createElement('dialog');
+      dlg.style.padding = '0';
+      dlg.style.border = 'none';
+      dlg.style.maxWidth = 'min(92vw, 1000px)';
+      dlg.innerHTML = `<img src="${img.src}" alt="${img.alt}" style="width:100%;height:auto;display:block;border-radius:16px">`;
+      dlg.addEventListener('click', () => dlg.close());
+      document.body.appendChild(dlg); dlg.showModal();
+    });
+  </script>
+</Base>
